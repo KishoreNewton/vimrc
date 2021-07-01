@@ -1,8 +1,10 @@
+syntax on
+set t_ZH=^[[3m
+set t_ZR=^[[23m
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 let g:clang_library_path='/usr/lib/llvm-10/lib/libclang.so'
 let g:NERDTreeWinPos = "right"
-highlight Comment cterm=italic
 set path+=**
 set wildignore+=**/node_modules/**
 set tabstop=2 softtabstop=2
@@ -22,6 +24,14 @@ set noerrorbells
 set smartcase
 set ballooneval
 set belloff=all
+highlight Comment cterm=italic gui=italic term=italic
+highlight Statement  cterm=italic gui=italic term=italic
+highlight Type  cterm=italic gui=italic term=italic
+highlight PreProc cterm=bold  gui=bold  term=bold
+highlight Special  cterm=bold  gui=bold  term=bold
+highlight Underlined  cterm=underline  gui=underline  term=underline
+highlight Error  cterm=underline  gui=underline  term=underline
+
 set clipboard=unnamedplus
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -66,4 +76,4 @@ Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 call vundle#end()            
-filetype plugin indent on    
+filetype plugin indent on 
