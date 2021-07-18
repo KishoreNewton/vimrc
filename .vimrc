@@ -1,3 +1,4 @@
+" Old config Jly 19 01:37 "
 syntax on
 set t_ZH=^[[3m
 set t_ZR=^[[23m
@@ -77,3 +78,73 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 call vundle#end()            
 filetype plugin indent on 
+
+
+" New config Jly 19 01:37 "
+
+syntax on 
+
+set noerrorbells
+set tabstop=2 softtabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set nu
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set invnumber
+set belloff=all
+set mouse=a
+set relativenumber
+set exrc
+set background=dark
+
+highlight Comment cterm=italic gui=italic term=italic
+highlight Statement  cterm=italic gui=italic term=italic
+highlight Type  cterm=italic gui=italic term=italic
+highlight PreProc cterm=bold  gui=bold  term=bold
+highlight Special  cterm=bold  gui=bold  term=bold
+highlight Underlined  cterm=underline  gui=underline  term=underline
+highlight Error  cterm=underline  gui=underline  term=underline
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-fugitive'
+Plug 'leafgarland/typescript-vim'
+Plug 'vim-utils/vim-man'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install'  }
+Plug 'lyuts/vim-rtags'
+Plug 'git@github.com:kien/ctrlp.vim.git'
+Plug 'git@github.com:Valloric/YouCompleteMe.git'
+Plug 'mbbill/undotree'
+
+call plug#end()
+
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let mapleader = " "
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0 
+let g:netrw_winsize = 25
+
+let g:ctrlp_use_caching = 0
+
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR> 
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
