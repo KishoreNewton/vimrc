@@ -119,6 +119,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install'  }
 Plug 'lyuts/vim-rtags'
+Plug 'preservim/nerdtree'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'git@github.com:Valloric/YouCompleteMe.git'
 Plug 'mbbill/undotree'
@@ -126,7 +127,7 @@ Plug 'mbbill/undotree'
 call plug#end()
 
 if executable('rg')
-    let g:rg_derive_root='true'
+  let g:rg_derive_root='true'
 endif
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -134,8 +135,8 @@ let mapleader = " "
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0 
 let g:netrw_winsize = 25
-
 let g:ctrlp_use_caching = 0
+let g:NERDTreeWinPos = "right"
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -148,3 +149,6 @@ nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
+
+nmap <F6> :NERDTreeToggle<CR>
+
