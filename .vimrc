@@ -2,7 +2,7 @@
 syntax on
 set t_ZH=^[[3m
 set t_ZR=^[[23m
-let &t_ZH="\e[3m"
+let &t_ZH="\e[3m"  ""
 let &t_ZR="\e[23m"
 let g:clang_library_path='/usr/lib/llvm-10/lib/libclang.so'
 let g:NERDTreeWinPos = "right"
