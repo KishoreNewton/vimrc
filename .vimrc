@@ -51,7 +51,12 @@ hi SpellBadUnderlined ctermfg=black cterm=underline
 
 call plug#begin('~/.config/nvim/pack')
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'burntsushi/ripgrep'
+Plug 'ms-jpq/coq_nvim'
+Plug 'jameshiew/nvim-magic'
+Plug 'folke/trouble.nvim'
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-fugitive'
@@ -69,7 +74,7 @@ Plug 'google/vim-jsonnet'
 Plug 'maxmellon/vim-jsx-pretty'
 "Plug 'ap/vim-css-color'"
 Plug 'junegunn/fzf'
-Plug 'valloric/youcompleteme'
+"Plug 'valloric/youcompleteme'"
 Plug 'hail2u/vim-css3-syntax'
 Plug 'leafgarland/typescript-vim'
 Plug 'github/copilot.vim'
