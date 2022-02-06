@@ -3,6 +3,9 @@ syntax on
 set scrolloff=8
 "set termguicolors"     " enable true colors support
 "let ayucolor="dark""   " for dark version of theme
+"set timeoutlen=1000
+
+set ttimeoutlen=0
 set number
 set relativenumber
 set noerrorbells
@@ -11,6 +14,7 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set nu
+set completeopt+=menuone,noselect,noinsert " don't insert text automatically
 set smartcase
 set noswapfile
 set nobackup
@@ -44,10 +48,6 @@ hi SpellRareUnderlined ctermfg=black cterm=underline
 hi SpellLocalUnderlined ctermfg=black cterm=underline
 hi SpellCapUnderlined ctermfg=black cterm=underline
 hi SpellBadUnderlined ctermfg=black cterm=underline
-"hi! CocErrorSign guifg=#d1666a"
-"hi! CocInfoSign guibg=#353b45"
-"hi! CocWarningSign guifg=#d1cd66"
-
 
 call plug#begin('~/.config/nvim/pack')
 
@@ -70,19 +70,22 @@ Plug 'mbbill/undotree'
 Plug 'ayu-theme/ayu-vim'
 Plug 'elzr/vim-json'
 Plug 'google/vim-jsonnet'
-"Plug 'digitaltoad/vim-pug'"
 Plug 'maxmellon/vim-jsx-pretty'
-"Plug 'ap/vim-css-color'"
 Plug 'junegunn/fzf'
-"Plug 'valloric/youcompleteme'"
 Plug 'hail2u/vim-css3-syntax'
-Plug 'leafgarland/typescript-vim'
 Plug 'github/copilot.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'palantir/tslint'"
-"Plug 'Quramy/tsuquyomi'"
-Plug 'neoclide/coc.nvim'
+"Plug 'neoclide/coc.nvim'"
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+Plug 'iamcco/diagnostic-languageserver'
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 "Plug 'dense-analysis/ale'"
 "Plug 'fannheyward/coc-deno'"
 "Plug 'dense-analysis/ale'"
@@ -95,6 +98,10 @@ if executable('rg')
 endif
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#error_symbol = 'E:'
+let airline#extensions#coc#warning_symbol = 'W:'
+let g:airline#extensions#coc#show_coc_status = 1
 let mapleader = " "
 let g:ctrlp_use_caching = 0
 let g:NERDTreeWinPos = "right"
@@ -128,3 +135,20 @@ nmap gd <Plug>(ale_go_to_definition)
 nmap gD <Plug>(ale_go_to_type_definition)
 
 "colorscheme slate"
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+" use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" use <c-space>for trigger completion
+inoremap <silent><expr> <NUL> coc#refresh()
