@@ -62,6 +62,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'mattn/emmet-vim'
+Plug 'frazrepo/vim-rainbow'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install'  }
 Plug 'lyuts/vim-rtags'
 Plug 'preservim/nerdtree'
