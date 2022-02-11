@@ -39,6 +39,10 @@ highlight Type  cterm=italic gui=italic term=italic
 highlight PreProc cterm=bold  gui=bold  term=bold
 highlight Special  cterm=bold  gui=bold  term=bold
 highlight Underlined  cterm=underline  gui=underline  term=underline
+highlight CocErrorFloat ctermfg=black guifg=white
+highlight CocError ctermfg=white guifg=black
+highlight CocWarning ctermfg=white guifg=black
+highlight CocInfo ctermfg=white guifg=black
 
 hi SpellBad ctermfg=black 
 hi SpellCap ctermfg=black  
@@ -62,7 +66,6 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'mattn/emmet-vim'
-Plug 'frazrepo/vim-rainbow'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install'  }
 Plug 'lyuts/vim-rtags'
 Plug 'preservim/nerdtree'
@@ -153,3 +156,4 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " use <c-space>for trigger completion
 inoremap <silent><expr> <NUL> coc#refresh()
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
